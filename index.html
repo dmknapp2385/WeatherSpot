@@ -11,22 +11,40 @@
 </head>
 <body>
     <header>
-        <h1 class="font">WeatherSpot</h1>
+        <h1 class="font is-size-1">WeatherSpot</h1>
     </header>
     <main class="columns">
         <div id="city-column" class="column is-one-quarter">
-            <div class="city">
-                <h2 class="font">Search for a City:</h2>
-                <form action="">
+            <div id="city-search">
+                <h2 class="font is-size-4">Search for a City:</h2>
+                <form>
                     <input type="text" name="city-box" id="city-box" placeholder="Tucson"
                     class="input is-primary is-medium font">
-                    <button class="btn search" type="button"></button>
+                    <button class="btn " type="button"></button>
                 </form>
             </div>
+            <div id="city-history">
+                <!-- dynamically create buttons from stored history and place here -->
+                <p>test one</p>
+                <p>test two
 
+                </p>
+            </div>
         </div>
-        <div id="weather-box">
-
+        <div id="weather-box" class="column is-three-quarters">
+            <div id="today" class="column is-full">
+                <!-- dynamically insert todays weather info -->
+                <h3 id='city-name' class="font is-size-4">Tucson</h3>
+                <h4 class="date font is-size-5">Tester</h4>
+            </div>
+            <div id="future-days" class="columns">
+                <!-- dynamically input data -->
+                <div id="day-1" class="column is-one-fifth font"> <p>monday</p></div>
+                <div id="day-2" class="column is-one-fifth font"> <p>Tuesday</p></div>
+                <div id="day-3" class="column is-one-fifth font"><p>wednesday</p></div>
+                <div id="day-4" class="column is-one-fifth font"><p>thusrday</p></div>
+                <div id="day-5" class="column is-one-fifth font"><p>friday</p></div>
+            </div>
         </div>
     </main>
     <script src="./js/homescript.js"></script>
