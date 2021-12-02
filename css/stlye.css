@@ -52,6 +52,10 @@ main {
     margin-top: 30px;
 }
 
+#future-days {
+    margin-right: -12px;
+}
+
 
 @media screen and (max-width:300px) {
     header {
