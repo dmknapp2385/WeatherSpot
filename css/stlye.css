@@ -1,0 +1,30 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #fff  
+}
+
+.font {
+    font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+header {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 80px;
+    line-height: 2em;
+    margin: 20px;
+    background-image: linear-gradient(25deg, white 10% ,rgb(99, 175, 211) 70%, white);
+    height: 200px;
+    border-radius: 12px;
+}
+
+main {
+    display: flex;
+}
+
