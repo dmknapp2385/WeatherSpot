@@ -4,28 +4,58 @@
     box-sizing: border-box;
 }
 
-:root {
-    --primary-color: #fff  
-}
-
 .font {
     font-family: "Fuzzy Bubbles", sans-serif;
 }
 
 header {
-    text-align: center;
-    font-weight: bold;
-    font-size: 30px;
-    padding-top: 45px;
-    line-height: 2em;
-    margin: 20px;
+    margin: 12px;
     background-image: linear-gradient(25deg, rgb(246, 248, 130) 10% ,#00d1b2 70%, rgb(246, 248, 130));
     height: 150px;
-    border-radius: 12px;
+    border-radius: 12px; 
+}
+
+#city-history {
+    border-top: dotted 3px gray;
+}
+
+.button {
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+main {
+    margin: 20px;
+}
+
+.cloudy {
+    background-image: url(../images/cloudy.jpg); 
+    color: white;
+}
+
+.sunny {
+    background-image: url(../images/sunny.jpg); 
 }
 
 
-main {
-    display: flex;
+.rainy {
+    background-image: url(../images/rainy.jpg); 
+    color: white;
+}
+
+
+.snowy {
+    background-image: url(../images/snowy.jpg); 
+}
+
+.card-content {
+    margin-top: 30px;
+}
+
+
+@media screen and (max-width:300px) {
+    header {
+        margin: 0px;
+    }  
 }
 

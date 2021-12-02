@@ -10,42 +10,65 @@
     <title>WeatherSpot</title>
 </head>
 <body>
-    <header>
+    <header class="is-flex is-justify-content-center is-align-items-center">
         <h1 class="font is-size-1">WeatherSpot</h1>
     </header>
-    <main class="columns">
-        <div id="city-column" class="column is-one-quarter">
-            <div id="city-search">
-                <h2 class="font is-size-4">Search for a City:</h2>
-                <form>
-                    <input type="text" name="city-box" id="city-box" placeholder="Tucson"
-                    class="input is-primary is-medium font">
-                    <button class="btn " type="button"></button>
-                </form>
+    <main>
+        <section class="columns">
+            <div id="city-column" class="column is-one-quarter">
+                <div id="city-search">
+                    <h2 class="font is-size-4">Search for a City:</h2>
+                    <form>
+                        <input type="text" name="city-box" id="city-box" placeholder="Tucson"
+                        class="input is-primary is-medium font">
+                        <button class="button is-primary is-large is-fullwidth" type="button">Search</button>
+                    </form>
+                </div>
+                <div id="city-history">
+                    <!-- dynamically create buttons from stored history and place here -->
+                    <button class="button is-primary is-large is-fullwidth" type="button">History City</button>
+                    
+                </div>
             </div>
-            <div id="city-history">
-                <!-- dynamically create buttons from stored history and place here -->
-                <p>test one</p>
-                <p>test two
+            <div id="weather-box" class="column is-three-quarters">
 
-                </p>
+                <div id="today" class="column is-full">
+                    <!-- dynamically insert todays weather info -->
+                    <div class="card rainy font is-size-4">
+                        <div class="card-header">
+                            <p class="font is-size-3 city">somthein</p>
+                        </div>
+                        <div class="card-content">
+                            <p class="font temp">something</span></p>
+                            <p class="font wind">something</p>
+                            <p class="font humidity"></p>
+                            <p class="font uv"></p>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div id="future-days" class="column is-full columns">
+                    <!-- dynamically input data -->
+                    <div class="column is-one-fifth font">
+                        <div class="tommorrow card is-size-6 cloudy" id="day-1">
+                            <div class="card-header">
+                                <p class="date is-size-5">12/3/21</p>
+                            </div>
+                            <div class="card-content">
+                                <p class="temp"> Temp: </p>
+                                <p class="humidity">12/3/21</p>
+                                <p class="wind">12/3/21</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="day-2" class="column is-one-fifth font"> <p>Tuesday</p></div>
+                    <div id="day-3" class="column is-one-fifth font"><p>wednesday</p></div>
+                    <div id="day-4" class="column is-one-fifth font"><p>thusrday</p></div>
+                    <div id="day-5" class="column is-one-fifth font"><p>friday</p></div>
+                </div>
             </div>
-        </div>
-        <div id="weather-box" class="column is-three-quarters">
-            <div id="today" class="column is-full">
-                <!-- dynamically insert todays weather info -->
-                <h3 id='city-name' class="font is-size-4">Tucson</h3>
-                <h4 class="date font is-size-5">Tester</h4>
-            </div>
-            <div id="future-days" class="columns">
-                <!-- dynamically input data -->
-                <div id="day-1" class="column is-one-fifth font"> <p>monday</p></div>
-                <div id="day-2" class="column is-one-fifth font"> <p>Tuesday</p></div>
-                <div id="day-3" class="column is-one-fifth font"><p>wednesday</p></div>
-                <div id="day-4" class="column is-one-fifth font"><p>thusrday</p></div>
-                <div id="day-5" class="column is-one-fifth font"><p>friday</p></div>
-            </div>
-        </div>
+        </section>
+       
     </main>
     <script src="./js/homescript.js"></script>
 </body>
