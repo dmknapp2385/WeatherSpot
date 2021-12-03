@@ -6,16 +6,15 @@ var searchButton = document.querySelector("#search");
 
 // function to get city name when search is hit
 var searchCity = function(event) {
-    console.log("button clicked")
+    event.preventDefault();
     var city = document.querySelector("#city-box").value;
-    console.log(city);
     if (!city) {
         alert("Please enter a city or choose a previous location.");
     }
     else{
         geoLocate(city);
     }
-}
+};
 
 // function to get api data for lat and long
 
@@ -25,11 +24,7 @@ var geoLocate = function(city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                console.log(data);
-                console.log(data.lat);
-                console.log(city);
-                weatherData(city, data.lat, data.lon);
-                
+                weatherData(city, data[0].lat, data[0].lon);
             });
         }
         else {
