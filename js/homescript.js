@@ -21,7 +21,6 @@ var geoLocate = function(city) {
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
             response.json().then(function(data) {
-                console.log(data);
                 if (data.length === 0) {
                     alert("Error: City not Found");
                 }
@@ -48,13 +47,24 @@ var weatherData = function(city, lat, lon) {
                 var date = new Date((data.current.dt)*1000);
                 var dateMDY= (date.getMonth() + 1)+ "/" + date.getDate() + "/" + date.getFullYear();
                 // create obj for current day
-                var currentDayObj = {"date": dateMDY, "temp": data.current.temp, "humidity": data.current.humidity, "wind": data.current.wind_speed, "condition": data.current.weather[0].main};
+                var currentDayObj = {"date": dateMDY, "temp": data.current.temp, "humidity": data.current.humidity, "wind": data.current.wind_speed, "uv": data.current.uvi, "condition": data.current.weather[0].main};
 
                 // populate today dive with current day stats
                 var todayHeader = document.querySelector(".city").textContent = city.toUpperCase() + " (" + currentDayObj.date + "):";
+                
+                var todayTemp = document.querySelector("#today .temp").textContent = "Temp: " + currentDayObj.temp;
 
+                var todayWind = document.querySelector("#today .wind").textContent = "Wind: " + currentDayObj.wind;
+
+                var todayHumidity = document.querySelector("#today .humidity").textContent = "Humidity: " + currentDayObj.humidity;
+
+                var uvi = currentDayObj.uv;
+
+                // go to switch function to get uvi data
+                switchUVI(uvi);
+                // go to condition function to set background image
+                backgroundImage(currentDayObj.condition);
                 // call forecast funciton
-
                 forecast(data.daily);
             });
         }
@@ -64,9 +74,32 @@ var weatherData = function(city, lat, lon) {
     });
 }
 
+// switch function to set uvi background
+var switchUVI =function(uvi) {
+    var todayUV = document.querySelector("#today .uv span").textContent = uvi; 
+    switch (uvi) {
+        case (uvi <= 2):
+            todayUV.className = 'green';
+            break;
+        case (uvi <= 5):
+            todayUV.className = "orange";
+            break;
+        default:
+            todayUV.className = "red";
+            break;
+    }
+}
+
+// function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
+var backgroundImage = function(condition) {
+    console.log(condition);
+}
+
 // forecast function
 var forecast = function(data) {
-    console.log(data);
+    for (var i = 0; i < 5; i++) {
+
+    }
 }
 
 // for loop to go over the next five days from daily data in api
@@ -74,12 +107,8 @@ var forecast = function(data) {
             
                     // data.weather.main can be clear (thunderstomr, drizzle,rain), snow, clouds, other (hazy conditions)
 
-// current day function to populate current day div
-var currentDayStats = function() {
 
-}
 
-// forecast function to populate five day forecast in cards
 
 // store lat and long and city in local storage
 var saveCity = function (city, lat, long) {
@@ -90,9 +119,18 @@ var saveCity = function (city, lat, long) {
 }
 
 // load cities to load most recent five cities
+var loadCities = function() {
+    var searchHistoryCities = localStorage.getItem("cities");
+
+}
     // load cities and geo locations into array
     // delete oldest if more than five
     // create buttons for
     // on click function that places name and location into weatherData function
+
+// function to take history buttons get weather with lat and long
+var historyButtonHandler = function(event) {
+
+}
 
 searchButton.addEventListener("click", searchCity);

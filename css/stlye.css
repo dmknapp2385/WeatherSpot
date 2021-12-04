@@ -28,6 +28,21 @@ main {
     margin: 20px;
 }
 
+.green {
+    background-color: green;
+    opacity: .7;
+}
+
+.orange {
+    background-color: orangered;
+    opacity: .7;
+}
+
+.red {
+    background-color: red;
+    opacity: .7;
+}
+
 .cloudy {
     background-image: url(../images/cloudy.jpg); 
     color: white;
