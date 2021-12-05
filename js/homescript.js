@@ -4,7 +4,10 @@ var searchButton = document.querySelector("#search");
 // function to get city name when search is hit
 var searchCity = function(event) {
     event.preventDefault();
-    var city = document.querySelector("#city-box").value;
+    var cityBox = document.querySelector("#city-box");
+    var city = cityBox.value;
+    cityBox.value = "";
+
     if (!city) {
         alert("Please enter a city or choose a previous location.");
     }
@@ -25,7 +28,8 @@ var geoLocate = function(city) {
                     alert("Error: City not Found");
                 }
                 else {
-                    saveCity(city, data[0].lat, data[0].lon);
+                    saveCity(city);
+                    weatherData(city, data[0].lat, data[0].lon);
                 }
             });
         }
@@ -66,6 +70,7 @@ var weatherData = function(city, lat, lon) {
                 backgroundImage(currentDayObj.condition);
                 // call forecast funciton
                 forecast(data.daily);
+                return
             });
         }
         else {
@@ -76,7 +81,8 @@ var weatherData = function(city, lat, lon) {
 
 // switch function to set uvi background
 var switchUVI =function(uvi) {
-    var todayUV = document.querySelector("#today .uv span").textContent = uvi; 
+    var todayUV = document.querySelector("#today .uv span");
+    todayUV.textContent = uvi; 
     switch (uvi) {
         case (uvi <= 2):
             todayUV.className = 'green';
@@ -92,7 +98,6 @@ var switchUVI =function(uvi) {
 
 // function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
 var backgroundImage = function(condition) {
-    console.log(condition);
 }
 
 // forecast function
@@ -111,11 +116,36 @@ var forecast = function(data) {
 
 
 // store lat and long and city in local storage
-var saveCity = function (city, lat, long) {
-    var cityObj = {"city": city, "latitude": lat, "longitude": long};
-    searchCityarray.push(cityObj);
+var saveCity = function (city) {
+    var city = city.toLowerCase();
+    // check if city is repeat search
+    if (searchCityarray.includes(city)) {
+        return 
+    }
+    else{
+        // limit number of history cities viewed
+        if (searchCityarray.length > 5) {
+            searchCityarray.splice(0, 1);
+            searchCityarray.push(city);
+        }
+        else {
+            searchCityarray.push(city);
+        }
+    }
     localStorage.setItem("cities", JSON.stringify(searchCityarray));
-    weatherData(city, lat, long);
+    // create button and append to history buttons
+    var historyDiv = document.querySelector("#city-history");historyDiv.textContent = "";
+    for (var i = 0; i < searchCityarray.length; i ++) {
+        var historyButton = document.createElement("button");
+        historyButton.className = "button is-primary is-large is-fullwidth"
+        historyButton.textContent = searchCityarray[i].toUpperCase();
+        historyDiv.appendChild(historyButton);
+    }
+}
+
+// create button form from recent cities
+var createRecentsButtons = function (array) {
+    
 }
 
 // load cities to load most recent five cities
