@@ -154,7 +154,7 @@ var saveCity = function (city) {
     }
     else{
         // limit number of history cities viewed to 6
-        if (searchCityarray.length > 5) {
+        if (searchCityarray.length > 3) {
             searchCityarray.splice(0, 1);
             searchCityarray.push(city);
         }
@@ -164,25 +164,32 @@ var saveCity = function (city) {
     }
     localStorage.setItem("cities", JSON.stringify(searchCityarray));
     // create button and append to history buttons
-    
-    historyDiv.textContent = "";
-    for (var i = 0; i < searchCityarray.length; i ++) {
-        var historyButton = document.createElement("button");
-        historyButton.className = "button is-primary is-large is-fullwidth"
-        historyButton.setAttribute("id", searchCityarray[i]);
-        historyButton.textContent = searchCityarray[i].toUpperCase();
-        historyDiv.prepend(historyButton);
-    }
+    createRecentsButtons(searchCityarray);
 }
+
 
 // create button form from recent cities
 var createRecentsButtons = function (array) {
     //move this from savecity function after done with weather function
-}
+    historyDiv.textContent = "";
+    for (var i = 0; i < array.length; i ++) {
+        var historyButton = document.createElement("button");
+        historyButton.className = "button is-primary is-large is-fullwidth"
+        historyButton.setAttribute("id", array[i]);
+        historyButton.textContent = array[i].toUpperCase();
+        historyDiv.prepend(historyButton);
+    }
+};
 
 // load cities to load most recent five cities
 var loadCities = function() {
     searchCityarray = JSON.parse(localStorage.getItem("cities"));
+    if (!searchCityarray) {
+        searchCityarray = [];
+    }
+    else {
+        createRecentsButtons(searchCityarray);
+    }
 }
 
 // function to take history buttons get weather with lat and long
