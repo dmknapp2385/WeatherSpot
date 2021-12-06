@@ -205,7 +205,6 @@ var historyButtonHandler = function(event) {
 }
 
 loadCities();
-// need to create buttons from loaded history
 
 historyDiv.addEventListener("click", historyButtonHandler);
 searchButton.addEventListener("click", searchCity);
