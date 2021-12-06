@@ -100,15 +100,17 @@ var spanUVI = function(uvi) {
 
 // function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
 var backgroundImage = function(condition) {
-    console.log(condition);
     var currentDayDiv = document.querySelector("#today");
     if (condition === "Clear") {
         currentDayDiv.setAttribute("name", "clear");
     }
-    else if (condition === "Rain" || condition === "Tunderstorm" || condition === "Drizzle") {
+    else if (condition === "Rain" || condition === "Drizzle") {
         currentDayDiv.setAttribute("name", "rainy");
     }
-    else if (condition === "Snowy") {
+    else if (condition === "Thunderstorm") {
+        currentDayDiv.setAttribute("name", "stormy");
+    }
+    else if (condition === "Snow") {
         currentDayDiv.setAttribute("name", "snowy");
     }
     else if (condition === "Clouds") {

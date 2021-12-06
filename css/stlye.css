@@ -36,7 +36,7 @@ main {
     border-radius: 4px;
 }
 .green {
-    background-color: rgba(6, 105, 6, 0.5);
+    background-color: rgba(6, 105, 6, 0.8);
 }
 
 .orange {
@@ -50,26 +50,39 @@ main {
 [name=cloudy] {
     background-image: url(../images/cloudy.jpg); 
     color: white;
+    background-size: cover;
 }
 
 [name=clear] {
     background-image: url(../images/sunny.jpg); 
+    background-size: cover;
+    color: black;
 }
 
 
 [name=rainy] {
-    background-image: url(../images/rainy.jpg); 
+    background-image: url(../images/rainy.jpg);
     color: white;
+    background-position: bottom;
+    background-size: cover; 
 }
 
+[name=stormy] {
+    background-image: url(../images/thunderstorm.jpg); 
+    color: white;
+    background-size: cover;
+}
 
 [name=snowy] {
-    background-image: url(../images/snowy.jpg); 
+    background-image: url(../images/snowy.jpg);
+    background-size: cover; 
+    color: black;
 }
 
 [name=hazy] {
     background-image: url(../images/hazy.jpg);  
     color: white; 
+    background-size: cover;
 }
 
 .card-content {
@@ -78,6 +91,11 @@ main {
 
 #future-days {
     margin-right: -12px;
+}
+
+
+.card-header {
+    box-shadow: none;
 }
 
 
