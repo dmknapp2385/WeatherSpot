@@ -1,4 +1,5 @@
-var searchCityarray = []
+var searchCityarray = [];
+var historyDiv = document.querySelector("#city-history");
 var searchButton = document.querySelector("#search");
 
 // function to get city name when search is hit
@@ -63,14 +64,13 @@ var weatherData = function(city, lat, lon) {
                 var todayHumidity = document.querySelector("#today .humidity").textContent = "Humidity: " + currentDayObj.humidity;
 
                 var uvi = currentDayObj.uv;
-
                 // go to switch function to get uvi data
-                switchUVI(uvi);
+                spanUVI(uvi);
                 // go to condition function to set background image
                 backgroundImage(currentDayObj.condition);
                 // call forecast funciton
-                forecast(data.daily);
-                return
+                //forecast(data.daily);
+                
             });
         }
         else {
@@ -79,26 +79,47 @@ var weatherData = function(city, lat, lon) {
     });
 }
 
-// switch function to set uvi background
-var switchUVI =function(uvi) {
-    var todayUV = document.querySelector("#today .uv span");
-    todayUV.textContent = uvi; 
-    switch (uvi) {
-        case (uvi <= 2):
-            todayUV.className = 'green';
-            break;
-        case (uvi <= 5):
-            todayUV.className = "orange";
-            break;
-        default:
-            todayUV.className = "red";
-            break;
+// if else functions to set uvi background
+var spanUVI = function(uvi) {
+    var todayUVhead = document.querySelector("#today .uv");
+    todayUVhead.textContent = "UVI:  ";
+    var todayUV = document.createElement("span");
+    todayUV.textContent = uvi;
+    todayUVhead.appendChild(todayUV);
+    if (uvi <= 2) {
+        todayUV.className = 'green';
+    }
+    else if (uvi>2 && uvi <= 5) {
+        todayUV.className = "orange";
+    }
+    else {
+        todayUV.className = "red";
     }
 }
 
+
 // function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
 var backgroundImage = function(condition) {
+    console.log(condition);
+    var currentDayDiv = document.querySelector("#today");
+    if (condition === "Clear") {
+        currentDayDiv.setAttribute("name", "clear");
+    }
+    else if (condition === "Rain" || condition === "Tunderstorm" || condition === "Drizzle") {
+        currentDayDiv.setAttribute("name", "rainy");
+    }
+    else if (condition === "Snowy") {
+        currentDayDiv.setAttribute("name", "snowy");
+    }
+    else if (condition === "Clouds") {
+        currentDayDiv.setAttribute("name", "cloudy");
+    }
+    else {
+        currentDayDiv.setAttribute("name", "hazy");
+    }
 }
+        
+
 
 // forecast function
 var forecast = function(data) {
@@ -120,10 +141,11 @@ var saveCity = function (city) {
     var city = city.toLowerCase();
     // check if city is repeat search
     if (searchCityarray.includes(city)) {
-        return 
+        return
+        // maybe function to move city to front of array
     }
     else{
-        // limit number of history cities viewed
+        // limit number of history cities viewed to 6
         if (searchCityarray.length > 5) {
             searchCityarray.splice(0, 1);
             searchCityarray.push(city);
@@ -134,33 +156,41 @@ var saveCity = function (city) {
     }
     localStorage.setItem("cities", JSON.stringify(searchCityarray));
     // create button and append to history buttons
-    var historyDiv = document.querySelector("#city-history");historyDiv.textContent = "";
+    
+    historyDiv.textContent = "";
     for (var i = 0; i < searchCityarray.length; i ++) {
         var historyButton = document.createElement("button");
         historyButton.className = "button is-primary is-large is-fullwidth"
+        historyButton.setAttribute("id", searchCityarray[i]);
         historyButton.textContent = searchCityarray[i].toUpperCase();
-        historyDiv.appendChild(historyButton);
+        historyDiv.prepend(historyButton);
     }
 }
 
 // create button form from recent cities
 var createRecentsButtons = function (array) {
-    
+    //move this from savecity function after done with weather function
 }
 
 // load cities to load most recent five cities
 var loadCities = function() {
-    var searchHistoryCities = localStorage.getItem("cities");
-
+    searchCityarray = JSON.parse(localStorage.getItem("cities"));
 }
-    // load cities and geo locations into array
-    // delete oldest if more than five
-    // create buttons for
-    // on click function that places name and location into weatherData function
 
 // function to take history buttons get weather with lat and long
 var historyButtonHandler = function(event) {
-
+    var button = event.target
+    if (button.matches("button")) {
+        city = button.getAttribute("id");
+        geoLocate(city);
+    }
+    else {
+        return;
+    }
 }
 
+loadCities();
+// need to create buttons from loaded history
+
+historyDiv.addEventListener("click", historyButtonHandler);
 searchButton.addEventListener("click", searchCity);
