@@ -114,13 +114,10 @@ main {
     }
 }
 
-@media  screen and (max-width:1100px) {
-    #future-days {
-        display: flex;
-        flex-direction: column;
-        align-content: stretch!important;
-    }
-
-    #future-days .card {
+@media screen and (max-width: 1024px) {
+.column.is-one-fifth, .column.is-one-fifth-tablet {
+    flex: none;
+    width: 100%;
     }
 }
+
