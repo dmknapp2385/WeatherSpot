@@ -98,6 +98,10 @@ main {
     box-shadow: none;
 }
 
+.card {
+    box-shadow: none;
+}
+
 
 @media screen and (max-width:300px) {
     header {

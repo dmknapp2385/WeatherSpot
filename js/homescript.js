@@ -57,11 +57,11 @@ var weatherData = function(city, lat, lon) {
                 // populate today dive with current day stats
                 var todayHeader = document.querySelector(".city").textContent = city.toUpperCase() + " (" + currentDayObj.date + "):";
                 
-                var todayTemp = document.querySelector("#today .temp").textContent = "Temp: " + currentDayObj.temp;
+                var todayTemp = document.querySelector("#today .temp").textContent = "Temp: " + currentDayObj.temp + "°F";
 
-                var todayWind = document.querySelector("#today .wind").textContent = "Wind: " + currentDayObj.wind;
+                var todayWind = document.querySelector("#today .wind").textContent = "Wind: " + currentDayObj.wind + " mph";
 
-                var todayHumidity = document.querySelector("#today .humidity").textContent = "Humidity: " + currentDayObj.humidity;
+                var todayHumidity = document.querySelector("#today .humidity").textContent = "Humidity: " + currentDayObj.humidity + "%";
 
                 var uvi = currentDayObj.uv;
                 // go to switch function to get uvi data
@@ -69,7 +69,7 @@ var weatherData = function(city, lat, lon) {
                 // go to condition function to set background image
                 backgroundImage(currentDayObj.condition);
                 // call forecast funciton
-                //forecast(data.daily);
+                forecast(data.daily);
                 
             });
         }
@@ -100,7 +100,7 @@ var spanUVI = function(uvi) {
 
 // function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
 var backgroundImage = function(condition) {
-    var currentDayDiv = document.querySelector("#today");
+    var currentDayDiv = document.querySelector(".background-image");
     if (condition === "Clear") {
         currentDayDiv.setAttribute("name", "clear");
     }
@@ -125,17 +125,21 @@ var backgroundImage = function(condition) {
 
 // forecast function
 var forecast = function(data) {
+    console.log(data);
+    // for loop to go over the next five days from daily data in api
     for (var i = 0; i < 5; i++) {
+        // create formated date
+        var date = new Date((data[i].dt)*1000);
+        var dateMDY= (date.getMonth() + 1)+ "/" + date.getDate() + "/" + date.getFullYear();
+        var dayHeader = document.querySelector("#day-" + i +" .date");
+        dayHeader.textContent = dateMDY;
+        var dayTemp = document.querySelector("#day-" + i + " .temp").textContent = "Temp: " + data[i].temp.day + "°F";
 
+        var todayWind = document.querySelector("#day-" + i + " .wind").textContent = "Wind: " + data[i].wind_speed + " mph";
+
+        var todayHumidity = document.querySelector("#day-" + i + " .humidity").textContent = "Humidity: " + data[i].humidity + "%";
     }
 }
-
-// for loop to go over the next five days from daily data in api
-               
-            
-                    // data.weather.main can be clear (thunderstomr, drizzle,rain), snow, clouds, other (hazy conditions)
-
-
 
 
 // store lat and long and city in local storage
