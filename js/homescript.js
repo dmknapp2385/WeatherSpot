@@ -67,7 +67,7 @@ var weatherData = function(city, lat, lon) {
                 // go to switch function to get uvi data
                 spanUVI(uvi);
                 // go to condition function to set background image
-                backgroundImage(currentDayObj.condition);
+                backgroundImage(currentDayObj.condition, "today");
                 // call forecast funciton
                 forecast(data.daily);
                 
@@ -99,8 +99,9 @@ var spanUVI = function(uvi) {
 
 
 // function to set background image based on condition: snowy, rainy, clear, cloudy, or low visibility
-var backgroundImage = function(condition) {
-    var currentDayDiv = document.querySelector(".background-image");
+var backgroundImage = function(condition, day) {
+    console.log(condition, day);
+    var currentDayDiv = document.querySelector("#" + day);
     if (condition === "Clear") {
         currentDayDiv.setAttribute("name", "clear");
     }
@@ -125,7 +126,6 @@ var backgroundImage = function(condition) {
 
 // forecast function
 var forecast = function(data) {
-    console.log(data);
     // for loop to go over the next five days from daily data in api
     for (var i = 0; i < 5; i++) {
         // create formated date
@@ -138,6 +138,8 @@ var forecast = function(data) {
         var todayWind = document.querySelector("#day-" + i + " .wind").textContent = "Wind: " + data[i].wind_speed + " mph";
 
         var todayHumidity = document.querySelector("#day-" + i + " .humidity").textContent = "Humidity: " + data[i].humidity + "%";
+        var condition = data[i].weather[0].main;
+        backgroundImage(condition, "day-" + i);
     }
 }
 
