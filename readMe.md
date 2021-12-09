@@ -19,9 +19,9 @@ https://dmknapp2385.github.io/WeatherSpot/
 
 ## Credits
 
-Open Weather API
-Univeristy of Arizona Bootcamp
-www.freepik.com for images
+* Open Weather API
+* Univeristy of Arizona Bootcamp
+* www.freepik.com for images
 
 ## Contribution
 Made with ❤ by Danielle Knapp
