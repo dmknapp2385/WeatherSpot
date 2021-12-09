@@ -127,7 +127,7 @@ var backgroundImage = function(condition, day) {
 // forecast function
 var forecast = function(data) {
     // for loop to go over the next five days from daily data in api
-    for (var i = 0; i < 5; i++) {
+    for (var i = 1; i < 6; i++) {
         // create formated date
         var date = new Date((data[i].dt)*1000);
         var dateMDY= (date.getMonth() + 1)+ "/" + date.getDate() + "/" + date.getFullYear();

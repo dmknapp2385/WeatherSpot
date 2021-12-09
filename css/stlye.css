@@ -104,6 +104,20 @@ main {
     box-shadow: none;
 }
 
+footer {
+    margin: auto;
+    margin-bottom: 0px;
+    font-size: 10px;
+    color: gray;
+    font-family: sans-serif;
+    padding: 0px 1rem!important;
+    text-decoration: none;
+}
+
+footer a {
+    color:gray;
+}
+
 
 @media screen and (max-width:300px) {
     header {
