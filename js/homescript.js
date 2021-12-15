@@ -20,7 +20,7 @@ var searchCity = function(event) {
 // function to get api data for lat and long
 
 var geoLocate = function(city) {
-    var apiUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=1afc6727533d71d7e158d0e563485a07";
+    var apiUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=1afc6727533d71d7e158d0e563485a07";
 
     fetch(apiUrl).then(function(response) {
         if (response.ok) {
